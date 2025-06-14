@@ -16,7 +16,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Easy commenting with gc{selection} keystroke
 Plugin 'tpope/vim-commentary'
-" Wide language support + indenting goodies
+" Extra language support
 Plugin 'sheerun/vim-polyglot'
 " Git line changes shown in left bar
 Plugin 'airblade/vim-gitgutter'
@@ -24,6 +24,23 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'neitanod/vim-clevertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+" Linting and LSP
+Plugin 'dense-analysis/ale'
+" Automatic closing of [{()}]
+Plugin 'tmsvg/pear-tree'
+" Can select lines of text sharing same left column alignment with {action}ic
+Plugin 'coderifous/textobj-word-column.vim'
+" More recommended plugins: https://github.com/akrawchyk/awesome-vim
+" TODO: investigate and configure these plugins
+" More selection keybinds similar to {action}i"
+" Plugin 'wellle/targets.vim'
+" Play with surrounding [{()}] with keyboard black magic
+" Plugin 'tpope/vim-surround'
+" File management with dirvish and eunuch?
+" Jump around with s{two characters}
+" Plugin 'justinmk/vim-sneak'
+" GREP
+" Plugin 'wsdjeg/FlyGrep.vim'
 
 call vundle#end()
 filetype plugin indent on    " required
@@ -102,6 +119,16 @@ endfunction
 nmap ghn :call GitGutterNextHunkCycle()<CR>
 nmap ghp :call GitGutterPrevHunkCycle()<CR>
 
+" Autocompletion with Tab
+inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
+                      \<c-r>=CleverTab#Complete('tab')<cr>
+                      \<c-r>=CleverTab#Complete('ultisnips')<cr>
+                      \<c-r>=CleverTab#Complete('keyword')<cr>
+                      \<c-r>=CleverTab#Complete('omni')<cr>
+                      \<c-r>=CleverTab#Complete('stop')<cr>
+inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+" Remove tab conflict between autocompletion and ultisnippets
+let g:UltiSnipsExpandTrigger="<nul>"
 
 
 "************ EDITING FUNCTIONALITY ************"
@@ -131,15 +158,12 @@ set sidescrolloff=10
 " Open new panes to the right
 set splitright
 
-" Autocompletion with Tab
-inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
-                      \<c-r>=CleverTab#Complete('tab')<cr>
-                      \<c-r>=CleverTab#Complete('ultisnips')<cr>
-                      \<c-r>=CleverTab#Complete('keyword')<cr>
-                      \<c-r>=CleverTab#Complete('omni')<cr>
-                      \<c-r>=CleverTab#Complete('stop')<cr>
-inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
-let g:UltiSnipsExpandTrigger="<nul>"
+" Enable Linting
+let g:ale_completion_enabled=1
+
+" Enable ALE automatic fixing (not sure if this is something we need)
+let g:ale_fix_on_save=v:true
+let g:ale_fixers={'*': ['trim_whitespace']}
 
 "************ FILETYPE SUPPORT ************"
 " Map custom file extensions to standard formats
@@ -155,3 +179,5 @@ autocmd FileType verilog setlocal commentstring=//\ %s
 autocmd FileType systemverilog setlocal commentstring=//\ %s
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 
+" Configure verilator linting options
+" let g:ale_verilog_verilator_options=''
