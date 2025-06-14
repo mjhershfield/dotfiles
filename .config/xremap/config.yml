@@ -1,0 +1,4 @@
+modmap:
+  - name: Except Chrome
+    remap:
+      CapsLock: Esc

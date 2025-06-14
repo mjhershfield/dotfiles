@@ -1,0 +1,2 @@
+# Not sure if this symlink is portable
+.config/systemd/user/default.target.wants/

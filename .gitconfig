@@ -1,0 +1,13 @@
+[user]
+    name = Matthew Hershfield
+    email = mhershfield@ufl.edu
+[pull]
+    rebase = true
+[rebase]
+    autoStash = true
+[fetch]
+    prune = true
+[diff]
+    colorMoved = zebra
+[core]
+    autocrlf = false
