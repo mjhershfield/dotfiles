@@ -21,7 +21,7 @@ Plugin 'sheerun/vim-polyglot'
 " Git line changes shown in left bar
 Plugin 'airblade/vim-gitgutter'
 " Autocompletion and snippets with tab
-Plugin 'ervandew/supertab'
+Plugin 'neitanod/vim-clevertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
@@ -132,8 +132,14 @@ set sidescrolloff=10
 set splitright
 
 " Autocompletion with Tab
-let g:SuperTabDefaultCompletionType='context'
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
+                      \<c-r>=CleverTab#Complete('tab')<cr>
+                      \<c-r>=CleverTab#Complete('ultisnips')<cr>
+                      \<c-r>=CleverTab#Complete('keyword')<cr>
+                      \<c-r>=CleverTab#Complete('omni')<cr>
+                      \<c-r>=CleverTab#Complete('stop')<cr>
+inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+let g:UltiSnipsExpandTrigger="<nul>"
 
 "************ FILETYPE SUPPORT ************"
 " Map custom file extensions to standard formats
