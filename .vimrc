@@ -28,14 +28,14 @@ Plugin 'honza/vim-snippets'
 Plugin 'dense-analysis/ale'
 " Automatic closing of [{()}]
 Plugin 'tmsvg/pear-tree'
+" Play with surrounding [{()}] with keyboard black magic
+Plugin 'tpope/vim-surround'
 " Can select lines of text sharing same left column alignment with {action}ic
 Plugin 'coderifous/textobj-word-column.vim'
 " More recommended plugins: https://github.com/akrawchyk/awesome-vim
 " TODO: investigate and configure these plugins
 " More selection keybinds similar to {action}i"
 " Plugin 'wellle/targets.vim'
-" Play with surrounding [{()}] with keyboard black magic
-" Plugin 'tpope/vim-surround'
 " File management with dirvish and eunuch?
 " Jump around with s{two characters}
 " Plugin 'justinmk/vim-sneak'
