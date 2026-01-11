@@ -1,4 +1,7 @@
 modmap:
-  - name: Remap Caps Lock to Escape
+  - name: Caps Lock to Esc/Ctrl
     remap:
-      CapsLock: Esc
+      CapsLock:
+        held: LeftCtrl
+        alone: Esc
+        free_hold: true # Optional, defaults to false.
