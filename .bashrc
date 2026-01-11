@@ -10,8 +10,8 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 # Custom path modifications
-PATH="/opt/oss-cad-suite/bin:$PATH"
-export PATH
+# PATH="/opt/oss-cad-suite/bin:$PATH"
+# export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -28,7 +28,13 @@ unset rc
 
 eval "$(starship init bash)"
 
-alias ll="ls -l"
-alias la="ls -la"
-alias rm="echo Do not use rm! instead, use trash"
+alias ll='ls -l'
+alias la='ls -la'
+alias rm='echo Do not use rm! instead, use trash'
+alias neofetch='fastfetch'
+alias nv='nvim'
+alias vim='nvim'
+alias vi='nvim'
+
+alias todos='nvim ~/Documents/Notes/todos.md ~/Documents/Notes/todones.md'
 

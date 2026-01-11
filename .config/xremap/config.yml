@@ -1,4 +1,4 @@
 modmap:
-  - name: Except Chrome
+  - name: Remap Caps Lock to Escape
     remap:
       CapsLock: Esc

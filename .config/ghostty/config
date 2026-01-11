@@ -14,3 +14,5 @@
 # on Ghostty's website, at https://ghostty.org/docs/config.
 
 theme = GruvboxDark
+
+gtk-single-instance = true
