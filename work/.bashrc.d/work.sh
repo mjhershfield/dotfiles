@@ -1,4 +1,4 @@
-# PATH="/shared/home/mjhershfield/.local/opt/clang/bin:$PATH"
+PATH="/shared/home/mjhershfield/.local/opt/clang/bin:$PATH"
 # export PATH
 
 # From Ben's new hire doc
@@ -23,11 +23,11 @@ function get_jira_from_ws() {
 
 function get_dv_dir_from_ws() {
 	if [[ -n "$ASIC_HOME" ]]; then
-		local dv_dir="/nfs/sim/sco3/mjhershfield/jira/$(get_jira_from_ws)"	
+		local dv_dir="/nfs/sim/sco3/$USER/jira/$(get_jira_from_ws)"	
 		mkdir -p "$dv_dir"
 		echo "$dv_dir"
 	else
-		echo "/nfs/sim/sco3/mjhershfield/jira/"
+		echo "/nfs/sim/sco3/$USER/jira/"
 	fi
 }
 
@@ -35,19 +35,22 @@ function get_dv_dir_from_ws() {
 alias srun_='srun --partition=interactive-amd --x11 --cpus-per-task=1 --mem=25G --export=ALL'
 alias verdi='srun --partition=interactive-amd --x11 --cpus-per-task=1 --mem=25G --export=ALL /apps/synopsys/verdi/X-2025.06/bin/verdi -base'
 alias dve='srun --partition=interactive-amd --x11 --cpus-per-task=1 --mem=25G --export=ALL /apps/synopsys/vcs/X-2025.06/bin/dve -full64'
-alias cddd='cd /prj/sco3/data/mjhershfield/'
-alias pdd='pushd /prj/sco3/data/mjhershfield/'
+alias cddd="cd /prj/sco3/data/$USER/"
+alias pdd="pushd /prj/sco3/data/$USER/"
 alias cddv='cd $(get_dv_dir_from_ws)'
 alias pdv='pushd $(get_dv_dir_from_ws)'
 alias cdah='cd $ASIC_HOME'
 alias pah='pushd $ASIC_HOME'
 alias sws='pgr > /dev/null && setupws && popd > /dev/null'
 alias swsf='pgr > /dev/null && setupws skippy && popd > /dev/null'
+alias va="nvim /prj/sco3/data/$USER/allocation.md"
+alias ca="cat /prj/sco3/data/$USER/allocation.md"
 
 function rbdev() {
     local branch="$(git -C $ASIC_HOME rev-parse --abbrev-ref HEAD)"
     git checkout dev && git pull && git checkout $branch && git rebase dev -i
 }
+
 # -------- RUNNING FLOWS --------
 alias grtl="make -B gen_rtl"
 
