@@ -1,5 +1,5 @@
 [pull]
-	rebase = merge
+	rebase = false
 
 [rebase]
 	autoStash = true
