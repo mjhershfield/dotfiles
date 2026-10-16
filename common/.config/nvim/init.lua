@@ -1045,7 +1045,7 @@ do
   -- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
   --
   -- For independent modules, uncomment the convenience loader:
-  -- require 'custom.plugins'
+  require 'custom.plugins'
   --
   -- `custom.plugins` automatically loads files from that directory, but their
   -- order is unspecified. If plugins depend on each other, keep them in the same
@@ -1055,6 +1055,16 @@ do
   -- require 'custom.plugins.colorscheme'
   -- require 'custom.plugins.ui'
   -- require 'custom.plugins.git'
+  --
+  --
+  -- slang-diagnostics
+  do
+    vim.opt.runtimepath:append '/prj/sco3/data/mjhershfield/slang-diagnostics-lite/nvim'
+    require('slang_diag').setup { depth = 1 }
+  end
+
+  vim.keymap.set('n', '<leader>gv', '<cmd>SlangJump<cr>', { desc = '[G]o to [v]py or gv' })
+  vim.keymap.set('n', '<leader>gd', '<cmd>SlangDefinition<cr>', { desc = '[G]o to module [d]efinition' })
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
